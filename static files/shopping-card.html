@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="style.css" />
+
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto+Flex:opsz,wght@8..144,100..1000&family=Sour+Gummy:ital,wght@0,100..900;1,100..900&display=swap"
+      rel="stylesheet"
+    />
+
+    <script
+      type="module"
+      src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"
+    ></script>
+    <script
+      nomodule
+      src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"
+    ></script>
+    <title>Shop</title>
+  </head>
+
+  <body>
+    <div class="banner">
+      <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit.</p>
+    </div>
+    <header class="header">
+      <div class="header-wrapper">
+        <div class="logo-box">
+          <p class="logo">Nevi's Homemade <sup> &copy;</sup></p>
+        </div>
+        <nav class="navigation">
+          <ul class="navigation-list">
+            <li class="navigation-item">
+              <a class="navigation-link" href="/home.html">home</a>
+            </li>
+            <li class="navigation-item">
+              <a class="navigation-link" href="/shop.html">shop</a>
+            </li>
+            <li class="navigation-item">
+              <a class="navigation-link" href="/about.html">about</a>
+            </li>
+            <li class="navigation-item">
+              <a class="navigation-link" href="/contact.html">contact</a>
+            </li>
+          </ul>
+        </nav>
+        <a href="/shopping-card.html">
+          <ion-icon name="basket-outline"></ion-icon>
+        </a>
+      </div>
+    </header>
+
+    <main>
+      <section class="shopping-card-container">
+        <ul class="shopping-card">
+          <h2 class="shopping-cart-heading">Your Cart</h2>
+          <li class="shopping-cart">
+            <img
+              class="shopping-cart-image"
+              src="./static/item-1-images/item-image-1.png"
+              alt="item-image-1"
+            />
+            <p class="shopping-cart-item">1</p>
+            <div class="shopping-cart-content">
+              <h3 class="shopping-cart-title">Comfy Chloe Knit Blanket</h3>
+              <p class="shopping-cart-color">Color: Pink</p>
+              <p class="shopping-cart-qty">Queantity: 3</p>
+            </div>
+            <div class="shopping-cart-content">
+              <p class="shopping-cart-price-acc">
+                <span>20€</span> X <span>3</span> = <span>60€</span>
+              </p>
+              <button class="remove-btn">
+                <ion-icon name="trash-bin-outline"></ion-icon> Remove
+              </button>
+            </div>
+          </li>
+          <p class="shopping-cart-summary">Total: 60.00€</p>
+          <button class="shopping-card-purchuse-btn" type="">Purchuse</button>
+        </ul>
+      </section>
+    </main>
+
+    <script src="script.js"></script>
+  </body>
+</html>
