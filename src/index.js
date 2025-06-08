@@ -2,6 +2,8 @@ import express from "express";
 import routes from "./routes.js";
 import handlebars from "express-handlebars";
 import mongoose from "mongoose";
+import cookieParser from "cookie-parser";
+import { auth } from "./middlewares/authMiddleware.js";
 
 const port = 5000;
 
@@ -11,7 +13,9 @@ mongoose.connect("mongodb://localhost:27017/", { dbName: "Nevi" });
 
 app.use("/static", express.static("src/public"));
 
+app.use(cookieParser());
 app.use(express.urlencoded());
+app.use(auth);
 
 app.engine(
   "hbs",

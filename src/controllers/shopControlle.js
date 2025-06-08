@@ -1,5 +1,6 @@
 import { Router } from "express";
 import shopService from "../services/shopService.js";
+import { authGuard } from "../middlewares/authMiddleware.js";
 
 const shopController = Router();
 
@@ -9,10 +10,10 @@ shopController.get("/shop", async (req, res) => {
   res.render("products/shop", { products });
 });
 
-shopController.get("/create", (req, res) => {
+shopController.get("/create", authGuard, (req, res) => {
   res.render("products/create");
 });
-shopController.post("/create", async (req, res) => {
+shopController.post("/create", authGuard, async (req, res) => {
   const productData = req.body;
 
   await shopService.create(productData);

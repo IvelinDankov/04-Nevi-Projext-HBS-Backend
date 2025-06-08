@@ -32,9 +32,11 @@
       <div class="header-wrapper">
         <div class="logo-box">
           <p class="logo">Nevi's <br />Homemade <sup> &copy;</sup></p>
+          {{user.email}}
         </div>
         <nav class="navigation">
           <ul class="navigation-list">
+
             <li class="navigation-item">
               <a class="navigation-link" href="/">home</a>
             </li>
@@ -47,18 +49,25 @@
             <li class="navigation-item">
               <a class="navigation-link" href="/contact">contact</a>
             </li>
-            <li class="navigation-item">
-              <a class="navigation-link" href="/create">create</a>
-            </li>
-            <li class="navigation-item">
-              <a class="navigation-link" href="/users/register">register</a>
-            </li>
-            <li class="navigation-item">
-              <a class="navigation-link" href="/users/login">login</a>
-            </li>
-            <li class="navigation-item">
-              <a class="navigation-link" href="/logout">logout</a>
-            </li>
+
+            {{#if user}}
+              <li class="navigation-item">
+                <a class="navigation-link" href="/create">create</a>
+              </li>
+              <li class="navigation-item">
+                <a class="navigation-link" href="/users/logout">logout</a>
+              </li>
+
+            {{else}}
+              <li class="navigation-item">
+                <a class="navigation-link" href="/users/login">login</a>
+              </li>
+              <li class="navigation-item">
+                <a class="navigation-link" href="/users/register">register</a>
+              </li>
+
+            {{/if}}
+
           </ul>
         </nav>
         <a class="shopcart-link" href="/shopping-card.html">
