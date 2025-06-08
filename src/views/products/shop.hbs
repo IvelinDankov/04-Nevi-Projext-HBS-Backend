@@ -1,0 +1,31 @@
+<section class="shop-container">
+  <div class="shop">
+    <ul class="shop-list">
+
+      {{#each products}}
+
+        <li class="shop-item">
+          <div class="shop-cart">
+            <div class="cart-image-box">
+              <img class="cart-image" src="{{imageUrl}}" alt="item-01" />
+              <h2 class="cart-heading"> {{title}} </h2>
+              <p class="cart-price">Price: {{price}}€ </p>
+            </div>
+            <div class="cart-content">
+              <p class="cart-description">
+                {{descripion}}
+              </p>
+              <div class="cta-btns">
+                <a
+                  class="cart-link details-link"
+                  href="/{{id}}/details"
+                >Details</a>
+                <a class="cart-link" href="#">Add to Basket</a>
+              </div>
+            </div>
+          </div>
+        </li>
+      {{/each}}
+    </ul>
+  </div>
+</section>

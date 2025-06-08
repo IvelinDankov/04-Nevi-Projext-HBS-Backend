@@ -1,0 +1,41 @@
+<section class="details-container">
+  <div class="details">
+    <div class="details-image-box">
+      <img src="{{product.imageUrl}}" alt="item-image-1" />
+      <img src="{{product.imageOne}}" alt="item-image-2" />
+      <img src="{{product.imageTwo}}" alt="item-image-3" />
+      <img src="{{product.imageTreee}}" alt="item-image-4" />
+      <img src="/static/item-1-images/item-image-5.png" alt="item-image-5" />
+    </div>
+    <div class="details-content-box">
+      <h2 class="item-title">{{product.title}}</h2>
+      <p class="rating">⭐ <span>(5.00)</span></p>
+      <p class="item-description">
+        {{product.descripion}}
+      </p>
+
+      <h3 class="heading-3">Weights & Sizes</h3>
+      <p class="size"> {{product.size}} </p>
+
+      <div class="colors">
+        <p class="color-text">Color Brown</p>
+        <span class="color-1"></span>
+        <span class="color-2"></span>
+      </div>
+      <div class="details-price-info">
+        <div class="instock">in Stock <span>&radic;</span></div>
+        <div class="price-qty">
+          <p class="price"> {{product.price}} €</p>
+          <div class="quantity">
+            <span>Quantity</span>
+
+            <button>-</button>
+            <p class="qty">4</p>
+            <button>+</button>
+          </div>
+          <button class="btn add-to-cart-btn" type="">add to cart</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

@@ -1,17 +1,26 @@
 import express from "express";
 import routes from "./routes.js";
 import handlebars from "express-handlebars";
+import mongoose from "mongoose";
 
 const port = 5000;
 
 const app = express();
 
-app.use(express.static("public"));
+mongoose.connect("mongodb://localhost:27017/", { dbName: "Nevi" });
+
+app.use("/static", express.static("src/public"));
+
+app.use(express.urlencoded());
 
 app.engine(
   "hbs",
   handlebars.engine({
     extname: "hbs",
+    runtimeOptions: {
+      allowProtoMethodsByDefault: true,
+      allowProtoPropertiesByDefault: true,
+    },
   })
 );
 app.set("view engine", "hbs");
