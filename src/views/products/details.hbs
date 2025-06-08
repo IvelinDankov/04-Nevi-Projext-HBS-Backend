@@ -15,7 +15,14 @@
       </p>
 
       <h3 class="heading-3">Weights & Sizes</h3>
-      <p class="size"> {{product.size}} </p>
+      <select value="{{product.size}}">
+        <option value="xxl">xxl</option>
+        <option value="xl">xl</option>
+        <option value="l" selected>l</option>
+        <option value="m">m</option>
+        <option value="s">s</option>
+        <option value="xs">xs</option>
+      </select>
 
       <div class="colors">
         <p class="color-text">Color Brown</p>
@@ -33,7 +40,13 @@
             <p class="qty">4</p>
             <button>+</button>
           </div>
-          <button class="btn add-to-cart-btn" type="">add to cart</button>
+
+          <div class="cta-buttons">
+            <a class="btn add-to-cart-btn" href="/products/{{product.id}}/edit">
+              Edit Product
+            </a>
+            <button class="btn add-to-cart-btn" type="">add to cart</button>
+          </div>
         </div>
       </div>
     </div>

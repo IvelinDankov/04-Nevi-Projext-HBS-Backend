@@ -18,7 +18,7 @@ shopController.post("/create", authGuard, async (req, res) => {
 
   await shopService.create(productData);
 
-  res.redirect("/shop");
+  res.redirect("products/shop");
 });
 
 shopController.get("/:productId/details", async (req, res) => {
@@ -27,6 +27,22 @@ shopController.get("/:productId/details", async (req, res) => {
   const product = await shopService.getOne(productId);
 
   res.render("products/details", { product });
+});
+shopController.get("/:productId/edit", async (req, res) => {
+  const productId = req.params.productId;
+
+  const product = await shopService.getOne(productId);
+
+  res.render("products/edit", { product });
+});
+shopController.post("/:productId/edit", async (req, res) => {
+  const productId = req.params.productId;
+
+  const productData = req.body;
+
+  await shopService.update(productId, productData);
+
+  res.redirect(`/products/${productId}/details`);
 });
 
 export default shopController;

@@ -1,0 +1,75 @@
+<section class="edit-container">
+  <div class="edit">
+    <header class="edit-header">
+      <h2 class="edit-heading">Edit</h2>
+    </header>
+
+    <div class="edit-content-box">
+      <div class="edit-form-image-box">
+        <img class="edit-image" src="{{product.imageUrl}}" alt="" />
+      </div>
+      <form method="post" class="edit-form">
+        <h3 class="edit-form-heading">Edit Item</h3>
+        <input
+          type="text"
+          name="title"
+          value="{{product.title}}"
+          placeholder="Title"
+        />
+        <input
+          type="text"
+          name="imageUrl"
+          value="{{product.imageUrl}}"
+          placeholder="Image"
+        />
+        <input
+          type="text"
+          name="imageOne"
+          value="{{product.imageOne}}"
+          placeholder="Image-1"
+        />
+        <input
+          type="text"
+          name="imageTwo"
+          value="{{product.imageTwo}}"
+          placeholder="Image-2"
+        />
+        <input
+          type="text"
+          name="imageTreee"
+          f
+          value="{{product.imageTreee}}"
+          placeholder="Image-3"
+        />
+        <input
+          type="text"
+          name="imageFour"
+          value="{{product.imageFour}}"
+          placeholder="Image-4"
+        />
+        <input
+          type="text"
+          name="description"
+          value="{{product.descripion}}"
+          placeholder="Description"
+        />
+        <select value="{{product.size}}">
+          <option value="xxl">xxl</option>
+          <option value="xl">xl</option>
+          <option value="l">l</option>
+          <option value="m">m</option>
+          <option value="s">s</option>
+          <option value="xs">xs</option>
+        </select>
+        <input
+          type="number"
+          name="price"
+          value="{{product.price}}"
+          placeholder="Price"
+        />
+
+        <button class="edit-btn" type="submit">Edit</button>
+      </form>
+    </div>
+  </div>
+</section>

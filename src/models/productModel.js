@@ -22,13 +22,15 @@ const productSchema = new Schema({
     type: String,
     required: true,
   },
+  size: {
+    type: String,
+  },
   price: {
     type: Number,
     required: true,
   },
 });
 
+const Product = model("Product", productSchema);
 
-const Product = model('Product', productSchema)
-
-export default Product
+export default Product;

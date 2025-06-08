@@ -411,7 +411,14 @@ body {
   /* padding: 1rem 1.5rem; */
   background-color: var(--gray-color-btn-2);
 }
+
+.cta-buttons {
+  display: flex;
+  gap: 1rem;
+}
 .add-to-cart-btn {
+  border: none;
+  text-decoration: none;
   padding: 0.7rem 1rem;
   cursor: pointer;
   align-self: flex-end;
@@ -419,6 +426,13 @@ body {
   font-size: 2rem;
   text-transform: uppercase;
   transition: all 0.3s;
+}
+
+.add-to-cart-btn:first-child {
+  background-color: rgb(84, 237, 84);
+}
+.add-to-cart-btn:hover:first-child {
+  background-color: rgb(62, 171, 62);
 }
 
 .add-to-cart-btn:hover {
@@ -1039,13 +1053,13 @@ footer {
 }
 
 .edit {
-  height: calc(100vh - 9rem);
+  min-height: calc(100vh - 9rem);
   max-width: 130rem;
   margin: 0 auto;
   display: flex;
   flex-direction: column;
   gap: 3rem;
-  padding-top: 5rem;
+  padding: 5rem 0;
 }
 
 .edit-header {

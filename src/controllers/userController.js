@@ -18,7 +18,7 @@ userController.post("/users/register", guard, async (req, res) => {
   // set cookie to token
   res.cookie("auth", token);
 
-  res.redirect("/");
+  res.redirect("/products/shop");
 });
 userController.get("/users/login", guard, (req, res) => {
   res.render("users/login");
@@ -31,7 +31,7 @@ userController.post("/users/login", guard, async (req, res) => {
   // set cookie to token
   res.cookie("auth", token);
 
-  res.redirect("/shop");
+  res.redirect("/products/shop");
 });
 userController.get("/users/logout", authGuard, async (req, res) => {
   res.clearCookie("auth");
