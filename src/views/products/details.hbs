@@ -15,7 +15,7 @@
       </p>
 
       <h3 class="heading-3">Weights & Sizes</h3>
-      <select value="{{product.size}}">
+      <select class="product-size" value="{{product.size}}">
         <option value="xxl">xxl</option>
         <option value="xl">xl</option>
         <option value="l" selected>l</option>
@@ -37,7 +37,7 @@
             <span>Quantity</span>
 
             <button>-</button>
-            <p class="qty"> {{product.quantity}} </p>
+            <p class="qty"> {{cartQuantity}} </p>
             <button>+</button>
           </div>
 

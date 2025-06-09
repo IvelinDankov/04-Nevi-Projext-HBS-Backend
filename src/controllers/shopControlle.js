@@ -29,7 +29,14 @@ shopController.get("/:productId/details", async (req, res) => {
 
   const product = await shopService.getOne(productId);
 
-  res.render("products/details", { product });
+  const cartId = req.cookies.cartId;
+  const cart = await cartService.getOne(cartId, productId);
+
+  console.log(product);
+
+  let cartQuantity = cart?.quantity;
+
+  res.render("products/details", { product, cartQuantity });
 });
 shopController.get("/:productId/edit", authGuard, async (req, res) => {
   const productId = req.params.productId;
@@ -61,6 +68,7 @@ shopController.get("/shopping-card", async (req, res) => {
   let cartItems = await cartService.getCart(cartId);
 
   const cart = cartItems.map((item) => ({
+    id: item.id,
     name: item.product.title,
     price: item.product.price,
     imageUrl: item.product.imageUrl,
@@ -89,6 +97,16 @@ shopController.post("/:productId/details", async (req, res) => {
     cartItem = await cartService.create(cartId, product);
   }
   res.redirect("/products/shop");
+});
+
+shopController.get("/:cartId/remove", async (req, res) => {
+  const cartId = req.params.cartId;
+
+  console.log(cartId);
+
+  await cartService.remove(cartId);
+
+  res.redirect("/products/shopping-card");
 });
 
 export default shopController;

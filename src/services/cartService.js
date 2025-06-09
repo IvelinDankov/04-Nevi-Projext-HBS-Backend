@@ -16,4 +16,8 @@ export default {
   update(id, updatedQuantity) {
     return Cart.findByIdAndUpdate(id, { quantity: updatedQuantity });
   },
+
+  remove(id) {
+    return Cart.findByIdAndDelete(id);
+  },
 };

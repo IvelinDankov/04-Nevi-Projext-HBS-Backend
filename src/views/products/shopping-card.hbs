@@ -12,7 +12,7 @@
         <div class="shopping-cart-content">
           <h3 class="shopping-cart-title"> {{name}} </h3>
           <p class="shopping-cart-color">Color: Pink</p>
-          <p class="shopping-cart-qty">Queantity: {{quantity}} </p>
+          <p class="shopping-cart-qty">Quantity: {{quantity}} </p>
         </div>
         <div class="shopping-cart-content">
           <p class="shopping-cart-price-acc">
@@ -22,14 +22,14 @@
             =
             <span>{{totalPrice}} €</span>
           </p>
-          <button class="remove-btn">
+          <a href="/products/{{id}}/remove" class="remove-btn">
             <ion-icon name="trash-bin-outline"></ion-icon>
             Remove
-          </button>
+          </a>
         </div>
       </li>
     {{/each}}
     <p class="shopping-cart-summary">Total: {{total}} €</p>
-    <button class="shopping-card-purchuse-btn" type="">Purchuse</button>
+    <a class="shopping-card-purchuse-btn">Purchase</a>
   </ul>
 </section>
