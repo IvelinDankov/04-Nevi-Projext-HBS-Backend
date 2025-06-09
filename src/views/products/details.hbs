@@ -32,7 +32,7 @@
       <div class="details-price-info">
         <div class="instock">in Stock <span>&radic;</span></div>
         <div class="price-qty">
-          <p class="price"> {{product.price}} €</p>
+          <p class="price"> {{product.price}}.00 €</p>
           <div class="quantity">
             <span>Quantity</span>
 
@@ -56,7 +56,10 @@
                 delete Product
               </a>
             {{/if}}
-            <button class="btn add-to-cart-btn" type="">add to cart</button>
+            <form method="post">
+              <input type="text" name="id" value="{{product.id}}" />
+              <button class="btn add-to-cart-btn" type="submit">add to cart</button>
+            </form>
           </div>
         </div>
       </div>

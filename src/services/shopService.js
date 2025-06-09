@@ -5,8 +5,8 @@ export default {
     return Product.find();
   },
 
-  create(data) {
-    return Product.create(userId, data);
+  create(userId, data) {
+    return Product.create({ ...data, owner: userId });
   },
 
   getOne(id) {
@@ -15,5 +15,8 @@ export default {
 
   update(id, data) {
     return Product.findByIdAndUpdate(id, data);
+  },
+  delete(id) {
+    return Product.findByIdAndDelete(id);
   },
 };

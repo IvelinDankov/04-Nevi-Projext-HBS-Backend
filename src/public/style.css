@@ -451,7 +451,7 @@ body {
   display: flex;
   flex-direction: column;
   gap: 3rem;
-  padding-top: 5rem;
+  padding: 5rem 0;
 }
 
 .shopping-cart-heading {
