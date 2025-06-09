@@ -1,6 +1,7 @@
 import { Router } from "express";
 import shopService from "../services/shopService.js";
 import { authGuard } from "../middlewares/authMiddleware.js";
+import cartService from "../services/cartService.js";
 
 const shopController = Router();
 
@@ -49,19 +50,44 @@ shopController.post("/:productId/edit", authGuard, async (req, res) => {
 shopController.get("/:productId/delete", async (req, res) => {
   const productId = req.params.productId;
 
-  console.log(productId);
-
   await shopService.delete(productId);
 
   res.redirect("/products/shop");
 });
 shopController.get("/shopping-card", async (req, res) => {
-  res.render("products/shopping-card");
+  const cartId = req.cookies.cartId;
+
+  let cartItems = await cartService.getCart(cartId);
+
+  const cart = cartItems.map((item) => ({
+    name: item.product.title,
+    price: item.product.price,
+    imageUrl: item.product.imageUrl,
+    quantity: item.quantity,
+    totalPrice: item.quantity * item.product.price,
+  }));
+
+  const total = cart.reduce((sum, item) => sum + item.price * item.quantity, 0);
+
+  res.render("products/shopping-card", { cart, total });
 });
 
-shopController.post("/add-to-cart", async (req, rest) => {
-  const productId = req.body;
+shopController.post("/:productId/details", async (req, res) => {
+  const productId = req.params.productId;
+
   const product = await shopService.getOne(productId);
+
+  const cartId = req.cookies.cartId;
+  let cartItem = await cartService.getOne(cartId, productId);
+
+  if (cartItem) {
+    const updatedQuantity = (cartItem.quantity += 1);
+
+    await cartService.update(cartItem.id, updatedQuantity);
+  } else {
+    cartItem = await cartService.create(cartId, product);
+  }
+  res.redirect("/products/shopping-card");
 });
 
 export default shopController;

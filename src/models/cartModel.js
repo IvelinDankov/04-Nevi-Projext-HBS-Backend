@@ -5,8 +5,8 @@ const cartSchema = new Schema({
   product: {
     type: Types.ObjectId,
     ref: "Product",
-    quantity: Number,
   },
+  quantity: Number,
 });
 
 const Cart = model("Cart", cartSchema);

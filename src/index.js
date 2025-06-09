@@ -4,6 +4,7 @@ import handlebars from "express-handlebars";
 import mongoose from "mongoose";
 import cookieParser from "cookie-parser";
 import { auth } from "./middlewares/authMiddleware.js";
+import { shopCart } from "./middlewares/cartMiddleware.js";
 
 const port = 5000;
 
@@ -16,6 +17,7 @@ app.use("/static", express.static("src/public"));
 app.use(cookieParser());
 app.use(express.urlencoded());
 app.use(auth);
+app.use(shopCart);
 
 app.engine(
   "hbs",
