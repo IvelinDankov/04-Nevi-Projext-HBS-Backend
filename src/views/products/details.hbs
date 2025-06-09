@@ -42,9 +42,20 @@
           </div>
 
           <div class="cta-buttons">
-            <a class="btn add-to-cart-btn" href="/products/{{product.id}}/edit">
-              Edit Product
-            </a>
+            {{#if user}}
+              <a
+                class="btn add-to-cart-btn"
+                href="/products/{{product.id}}/edit"
+              >
+                Edit Product
+              </a>
+              <a
+                class="btn add-to-cart-btn"
+                href="/products/{{product.id}}/delete"
+              >
+                delete Product
+              </a>
+            {{/if}}
             <button class="btn add-to-cart-btn" type="">add to cart</button>
           </div>
         </div>

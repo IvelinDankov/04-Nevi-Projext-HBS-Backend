@@ -6,7 +6,7 @@ export default {
   },
 
   create(data) {
-    return Product.create(data);
+    return Product.create(userId, data);
   },
 
   getOne(id) {

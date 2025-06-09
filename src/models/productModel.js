@@ -1,4 +1,4 @@
-import { Schema, model } from "mongoose";
+import { Schema, model, Types } from "mongoose";
 
 const productSchema = new Schema({
   title: {
@@ -29,6 +29,12 @@ const productSchema = new Schema({
     type: Number,
     required: true,
   },
+  owner: [
+    {
+      type: Types.ObjectId,
+      ref: "User",
+    },
+  ],
 });
 
 const Product = model("Product", productSchema);

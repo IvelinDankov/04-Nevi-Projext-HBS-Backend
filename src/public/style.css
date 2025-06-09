@@ -278,7 +278,7 @@ body {
   margin: 0 auto;
   display: flex;
   gap: 3rem;
-  padding-top: 5rem;
+  padding: 5rem 0;
 }
 
 .details-image-box {
