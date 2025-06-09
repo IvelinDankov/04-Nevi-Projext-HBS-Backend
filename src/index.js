@@ -27,6 +27,10 @@ app.engine(
       allowProtoMethodsByDefault: true,
       allowProtoPropertiesByDefault: true,
     },
+    helpers: {
+      totalItems: (shopCart) =>
+        shopCart.reduce((sum, item) => sum + item.quantity, 0),
+    },
   })
 );
 app.set("view engine", "hbs");

@@ -10,6 +10,7 @@ shopController.get("/shop", async (req, res) => {
 
   res.render("products/shop", { products });
 });
+shopController.post("/shop", async (req, res) => {});
 
 shopController.get("/create", authGuard, (req, res) => {
   res.render("products/create");
@@ -87,7 +88,7 @@ shopController.post("/:productId/details", async (req, res) => {
   } else {
     cartItem = await cartService.create(cartId, product);
   }
-  res.redirect("/products/shopping-card");
+  res.redirect("/products/shop");
 });
 
 export default shopController;

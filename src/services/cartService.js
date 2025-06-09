@@ -4,6 +4,9 @@ export default {
   getOne(cartId, productId) {
     return Cart.findOne({ cartId, product: productId });
   },
+  getAll() {
+    return Cart.find();
+  },
   create(cartId, product) {
     return Cart.create({ cartId, product, quantity: 1 });
   },

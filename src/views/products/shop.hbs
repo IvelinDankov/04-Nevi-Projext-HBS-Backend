@@ -20,7 +20,10 @@
                   class="cart-link details-link"
                   href="/products/{{id}}/details"
                 >Details</a>
-                <a class="cart-link" href="#">Add to Basket</a>
+                <form method="post" action="/products/{{id}}/details">
+                  <input type="hidden" name="id" value="{{id}}" />
+                  <button type="submit" class="cart-link" href="#">Add to Basket</button>
+                </form>
               </div>
             </div>
           </div>
