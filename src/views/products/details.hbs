@@ -31,12 +31,24 @@
           <div class="quantity">
             <span>Quantity</span>
 
-            <button>-</button>
-            <p class="qty"> {{cartQuantity}} </p>
-            <button>+</button>
+            <form method="post" action="/products/update">
+              <input type="hidden" name="productId" value="{{product.id}}" />
+              <input type="hidden" name="action" value="decrease" />
+              <button type="submit">-</button>
+            </form>
+
+            <p class="qty">{{cartQuantity}}</p>
+
+            <form method="post" action="/products/update">
+              <input type="hidden" name="productId" value="{{product.id}}" />
+              <input type="hidden" name="action" value="increase" />
+              <button type="submit">+</button>
+            </form>
+
           </div>
 
           <div class="cta-buttons">
+            {{#if error}} <p> {{error}} </p> {{/if}}
             {{#if (eq user.role "admin")}}
               <a
                 class="btn add-to-cart-btn"

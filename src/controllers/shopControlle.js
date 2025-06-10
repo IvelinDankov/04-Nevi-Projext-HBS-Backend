@@ -1,4 +1,4 @@
-import { Router } from "express";
+import e, { Router } from "express";
 import shopService from "../services/shopService.js";
 import { authGuard, requiredAdmin } from "../middlewares/authMiddleware.js";
 import cartService from "../services/cartService.js";
@@ -145,6 +145,37 @@ shopController.get("/:cartId/remove", async (req, res) => {
   await cartService.remove(cartId);
 
   res.redirect("/products/shopping-card");
+});
+
+shopController.post("/update", async (req, res) => {
+  const { productId, action } = req.body;
+  const cartId = req.cookies.cartId;
+
+  try {
+    const cartItem = await cartService.getOne(cartId, productId);
+
+    const product = await shopService.getOne(productId);
+
+    if (!cartItem) {
+      if (action === "increase") {
+        await shopService.create(req.user?.id, product);
+      }
+    } else {
+      if (action === "increase") {
+        cartItem.quantity += 1;
+      } else if (action === "decrease" && cartItem.quantity > 1) {
+        cartItem.quantity -= 1;
+      } else if (action === "decrease") {
+        await cartService.delete(cartItem);
+        return res.redirect(`/products/shop`);
+      }
+      await cartItem.save();
+      res.redirect(`/products/${productId}/details`);
+    }
+  } catch (err) {
+    const error = errorMsg(err);
+    res.render("products/details", { error });
+  }
 });
 
 export default shopController;

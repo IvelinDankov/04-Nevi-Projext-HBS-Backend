@@ -20,4 +20,8 @@ export default {
   remove(id) {
     return Cart.findByIdAndDelete(id);
   },
+
+  delete(cartItem) {
+    return Cart.deleteOne({ _id: cartItem._id });
+  },
 };
