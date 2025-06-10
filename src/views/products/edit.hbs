@@ -47,19 +47,17 @@
           value="{{product.imageFour}}"
           placeholder="Image-4"
         />
-        <input
-          type="text"
+
+        <textarea
           name="description"
-          value="{{product.descripion}}"
           placeholder="Description"
-        />
-        <select value="{{product.size}}">
-          <option value="xxl">xxl</option>
-          <option value="xl">xl</option>
-          <option value="l">l</option>
-          <option value="m">m</option>
-          <option value="s">s</option>
-          <option value="xs">xs</option>
+          id=""
+        >{{product.description}}</textarea>
+
+        <select name="size" value="{{product.size}}">
+          {{#each sizeOptions}}
+            <option value="{{value}}" {{selected}}> {{label}} </option>
+          {{/each}}
         </select>
         <input
           type="number"

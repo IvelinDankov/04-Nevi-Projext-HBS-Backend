@@ -5,24 +5,19 @@
       <img src="{{product.imageOne}}" alt="item-image-2" />
       <img src="{{product.imageTwo}}" alt="item-image-3" />
       <img src="{{product.imageTreee}}" alt="item-image-4" />
-      <img src="/static/item-1-images/item-image-5.png" alt="item-image-5" />
+      <img src="{{product.imageFour}}" alt="item-image-5" />
     </div>
     <div class="details-content-box">
       <h2 class="item-title">{{product.title}}</h2>
       <p class="rating">⭐ <span>(5.00)</span></p>
       <p class="item-description">
-        {{product.descripion}}
+        {{product.description}}
       </p>
 
       <h3 class="heading-3">Weights & Sizes</h3>
-      <select class="product-size" value="{{product.size}}">
-        <option value="xxl">xxl</option>
-        <option value="xl">xl</option>
-        <option value="l" selected>l</option>
-        <option value="m">m</option>
-        <option value="s">s</option>
-        <option value="xs">xs</option>
-      </select>
+      <p class="product-size" value="">
+        {{product.size}}
+      </p>
 
       <div class="colors">
         <p class="color-text">Color Brown</p>
@@ -42,7 +37,7 @@
           </div>
 
           <div class="cta-buttons">
-            {{#if user}}
+            {{#if (eq user.role "admin")}}
               <a
                 class="btn add-to-cart-btn"
                 href="/products/{{product.id}}/edit"

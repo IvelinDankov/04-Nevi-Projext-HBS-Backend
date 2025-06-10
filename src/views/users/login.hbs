@@ -10,8 +10,22 @@
       </div>
       <form method="post" class="login-form">
         <h3 class="login-form-heading">Log in Now</h3>
-        <input type="email" name="email" value="" placeholder="Email" />
-        <input type="password" name="password" placeholder="Password" />
+        {{#if error}}
+          <p class="error"> {{error}} </p>
+        {{/if}}
+        <input
+          type="email"
+          name="email"
+          required="true"
+          value="{{email}}"
+          placeholder="Email"
+        />
+        <input
+          type="password"
+          name="password"
+          placeholder="Password"
+          required
+        />
 
         <button class="login-btn" type="submit">login</button>
       </form>

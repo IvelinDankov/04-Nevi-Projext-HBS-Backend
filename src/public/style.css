@@ -324,10 +324,14 @@ body {
 .heading-3 {
   color: var(--darkest-pink);
 }
-.size {
+.product-size {
+  width: 30%;
+  text-align: center;
   background-color: var(--dark-pink);
   margin-bottom: 16rem;
   color: var(--lighter-pink);
+  border: none;
+  padding: 5px 10px;
 }
 .colors {
   display: flex;
@@ -1140,4 +1144,41 @@ footer {
 
 .edit-btn:hover {
   background-color: var(--darker-pink);
+}
+
+/* ERROR */
+.error {
+  font-style: italic;
+  font-size: 1.3rem;
+  font-weight: 300;
+  color: darkred;
+  -webkit-animation: errAnimation 5s forwards;
+  animation: errAnimation 5s forwards;
+}
+
+@keyframes errAnimation {
+  0% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.8;
+  }
+  90% {
+    opacity: 0.5;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+@-webkit-keyframes errAnimation {
+  0% {
+    opacity: 1;
+  }
+  90% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
 }

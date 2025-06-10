@@ -3,11 +3,11 @@ import { Schema, model, Types } from "mongoose";
 const productSchema = new Schema({
   title: {
     type: String,
-    required: true,
+    required: [true, "Title is required, Please add a Title!"],
   },
   imageUrl: {
     type: String,
-    required: true,
+    required: [true, "Image is required, Put an Image!"],
   },
   imageOne: {
     type: String,
@@ -18,16 +18,18 @@ const productSchema = new Schema({
   imageTreee: {
     type: String,
   },
-  descripion: {
+  description: {
     type: String,
-    required: true,
+    required: [true, "Some Description is required!"],
+    minlength: [10, "Description min length is 10 characters!"],
   },
   size: {
     type: String,
   },
   price: {
     type: Number,
-    required: true,
+    required: [true, "Price is required!"],
+    min: [0, "Must be positive number!"],
   },
   owner: [
     {

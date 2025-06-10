@@ -30,6 +30,13 @@ app.engine(
     helpers: {
       totalItems: (shopCart) =>
         shopCart.reduce((sum, item) => sum + item.quantity, 0),
+      eq: (a, b) => a === b,
+      ifRole: (expectedRole, options) => {
+        if (this.role === expectedRole) {
+          return options.fn(this);
+        }
+        return options.inverse(this);
+      },
     },
   })
 );

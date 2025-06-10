@@ -10,23 +10,60 @@
       </div>
       <form class="create-form" method="POST">
         <h3 class="create-form-heading">create new Item</h3>
-        <input type="text" name="title" placeholder="Title" />
-        <input type="text" name="imageUrl" placeholder="Image" />
-        <input type="text" name="imageOne" placeholder="Image-1" />
-        <input type="text" name="imageTwo" placeholder="Image-2" />
-        <input type="text" name="imageThree" placeholder="Image-3" />
-        <input type="text" name="imageUrl-4" placeholder="Image-4" />
-        <textarea placeholder="Description..." rows="4" name="descripion">
-        </textarea>
+        {{#if error}}
+          <p class="error"> {{error}} </p>
+        {{/if}}
+        <input
+          type="text"
+          name="title"
+          placeholder="Title"
+          value="{{productData.title}}"
+        />
+        <input
+          type="text"
+          name="imageUrl"
+          placeholder="Image"
+          value="{{productData.imageUrl}}"
+        />
+        <input
+          type="text"
+          name="imageOne"
+          placeholder="Image-1"
+          value="{{productData.imageOne}}"
+        />
+        <input
+          type="text"
+          name="imageTwo"
+          placeholder="Image-2"
+          value="{{productData.imageTwo}}"
+        />
+        <input
+          type="text"
+          name="imageThree"
+          placeholder="Image-3"
+          value="{{productData.Three}}"
+        />
+        <input
+          type="text"
+          name="imageFour"
+          placeholder="Image-4"
+          value="{{productData.imageFour}}"
+        />
+        <textarea
+          placeholder="Description"
+          name="description"
+        >{{productData.description}}</textarea>
         <select name="size">
-          <option value="xxl">xxl</option>
-          <option value="xl">xl</option>
-          <option value="l">l</option>
-          <option value="m">m</option>
-          <option value="s">s</option>
-          <option value="xs">xs</option>
+          {{#each sizeOptions}}
+            <option value="{{value}}" {{selected}}> {{label}} </option>
+          {{/each}}
         </select>
-        <input type="text" name="price" value="" placeholder="Price" />
+        <input
+          type="text"
+          name="price"
+          value="{{productData.price}}"
+          placeholder="Price"
+        />
 
         <button class="create-btn" type="submit">Create</button>
       </form>

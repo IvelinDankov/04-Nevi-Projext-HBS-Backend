@@ -7,15 +7,17 @@ export const auth = (req, res, next) => {
   if (!token) return next();
 
   try {
-    const { email, id } = jwt.verify(token, SECRET);
+    const { email, id, role } = jwt.verify(token, SECRET);
 
     req.user = {
       id,
       email,
+      role,
     };
     res.locals.user = {
       id,
       email,
+      role,
     };
 
     next();
@@ -39,4 +41,11 @@ export const guard = (req, res, next) => {
   }
 
   next();
+};
+
+export const requiredAdmin = (req, res, next) => {
+  if (req.user?.role === "admin") {
+    return next();
+  }
+  res.send("Access denied");
 };

@@ -1,7 +1,27 @@
 import { Router } from "express";
 import shopService from "../services/shopService.js";
-import { authGuard } from "../middlewares/authMiddleware.js";
+import { authGuard, requiredAdmin } from "../middlewares/authMiddleware.js";
 import cartService from "../services/cartService.js";
+import { errorMsg } from "../utils/errorMessage.js";
+
+function sizeController(size) {
+  let options = [
+    { value: "XXL", label: "Biger Size" },
+    { value: "XL", label: "Big Size" },
+    { value: "L", label: "Normal Size" },
+    { value: "M", label: "Middle Size" },
+    { value: "S", label: "Small Size" },
+    { value: "XS", label: "Smaller Size" },
+  ];
+
+  const option = options.map((option) => ({
+    ...option,
+    value: option.value,
+    selected: option.value === size ? "selected" : "",
+  }));
+
+  return option;
+}
 
 const shopController = Router();
 
@@ -12,38 +32,58 @@ shopController.get("/shop", async (req, res) => {
 });
 shopController.post("/shop", async (req, res) => {});
 
-shopController.get("/create", authGuard, (req, res) => {
-  res.render("products/create");
+shopController.get("/create", requiredAdmin, (req, res) => {
+  const size = sizeController();
+
+  res.render("products/create", { sizeOptions: sizeController(size) });
 });
-shopController.post("/create", authGuard, async (req, res) => {
+shopController.post("/create", requiredAdmin, async (req, res) => {
   const productData = req.body;
   const userId = req.user?.id;
 
-  await shopService.create(userId, productData);
+  /* 
+   <option value="xxl">xxl</option>
+          <option value="xl">xl</option>
+          <option value="l">l</option>
+          <option value="m">m</option>
+          <option value="s">s</option>
+          <option value="xs">xs</option>
+  */
 
-  res.redirect("/products/shop");
+  try {
+    await shopService.create(userId, productData);
+
+    res.redirect("/products/shop");
+  } catch (err) {
+    console.log(err.name);
+
+    const error = errorMsg(err);
+    res.render("products/create", { error, productData });
+  }
 });
 
 shopController.get("/:productId/details", async (req, res) => {
   const productId = req.params.productId;
 
-  const product = await shopService.getOne(productId);
+  try {
+    const product = await shopService.getOne(productId);
 
-  const cartId = req.cookies.cartId;
-  const cart = await cartService.getOne(cartId, productId);
+    const cartId = req.cookies.cartId;
+    const cart = await cartService.getOne(cartId, productId);
 
-  console.log(product);
+    let cartQuantity = cart?.quantity;
 
-  let cartQuantity = cart?.quantity;
-
-  res.render("products/details", { product, cartQuantity });
+    res.render("products/details", { product, cartQuantity });
+  } catch (err) {}
 });
 shopController.get("/:productId/edit", authGuard, async (req, res) => {
   const productId = req.params.productId;
 
   const product = await shopService.getOne(productId);
 
-  res.render("products/edit", { product });
+  let size = product.size;
+
+  res.render("products/edit", { product, sizeOptions: sizeController(size) });
 });
 shopController.post("/:productId/edit", authGuard, async (req, res) => {
   const productId = req.params.productId;
@@ -101,8 +141,6 @@ shopController.post("/:productId/details", async (req, res) => {
 
 shopController.get("/:cartId/remove", async (req, res) => {
   const cartId = req.params.cartId;
-
-  console.log(cartId);
 
   await cartService.remove(cartId);
 

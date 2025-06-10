@@ -49,11 +49,13 @@
             <li class="navigation-item">
               <a class="navigation-link" href="/contact">contact</a>
             </li>
-
             {{#if user}}
-              <li class="navigation-item">
-                <a class="navigation-link" href="/products/create">create</a>
-              </li>
+              {{#if (eq user.role "admin")}}
+
+                <li class="navigation-item">
+                  <a class="navigation-link" href="/products/create">create</a>
+                </li>
+              {{/if}}
               <li class="navigation-item">
                 <a class="navigation-link" href="/users/logout">logout</a>
               </li>
@@ -77,6 +79,7 @@
       </div>
     </header>
     <main>
+
       {{{body}}}
 
     </main>
