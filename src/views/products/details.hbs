@@ -1,11 +1,30 @@
 <section class="details-container">
   <div class="details">
     <div class="details-image-box">
-      <img src="{{product.imageUrl}}" alt="item-image-1" />
-      <img src="{{product.imageOne}}" alt="item-image-2" />
-      <img src="{{product.imageTwo}}" alt="item-image-3" />
-      <img src="{{product.imageTreee}}" alt="item-image-4" />
-      <img src="{{product.imageFour}}" alt="item-image-5" />
+      <img src="{{product.imageUrl}}" alt="item-image-1" id="big-image" />
+
+      <img
+        src="{{product.imageOne}}"
+        alt="item-image-2"
+        onClick="swapImage(this)"
+      />
+
+      <img
+        src="{{product.imageTwo}}"
+        alt="item-image-3"
+        onClick="swapImage(this)"
+      />
+      <img
+        src="{{product.imageTreee}}"
+        alt="item-image-4"
+        onClick="swapImage(this)"
+      />
+      <img
+        src="{{product.imageFour}}"
+        alt="item-image-5"
+        onClick="swapImage(this)"
+      />
+
     </div>
     <div class="details-content-box">
       <h2 class="item-title">{{product.title}}</h2>

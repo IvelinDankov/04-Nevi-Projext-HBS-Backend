@@ -37,6 +37,12 @@ app.engine(
         }
         return options.inverse(this);
       },
+      plus: function (add, value) {
+        return value + add;
+      },
+      setMainImage: function (images) {
+        return images.length > 0 ? images[0] : "";
+      },
     },
   })
 );
