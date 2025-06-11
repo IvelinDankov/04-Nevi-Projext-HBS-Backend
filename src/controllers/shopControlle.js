@@ -71,7 +71,11 @@ shopController.get("/:productId/details", async (req, res) => {
     const cartId = req.cookies.cartId;
     const cart = await cartService.getOne(cartId, productId);
 
-    let cartQuantity = cart?.quantity;
+    let cartQuantity = 0;
+
+    if (cart) {
+      cartQuantity = cart.quantity;
+    }
 
     res.render("products/details", { product, cartQuantity });
   } catch (err) {}
@@ -136,7 +140,7 @@ shopController.post("/:productId/details", async (req, res) => {
   } else {
     cartItem = await cartService.create(cartId, product);
   }
-  res.redirect("/products/shop");
+  res.redirect(`/products/${productId}/details`);
 });
 
 shopController.get("/:cartId/remove", async (req, res) => {
@@ -152,15 +156,13 @@ shopController.post("/update", async (req, res) => {
   const cartId = req.cookies.cartId;
 
   try {
+    const product = await shopService.getOne(productId);
     const cartItem = await cartService.getOne(cartId, productId);
 
-    const product = await shopService.getOne(productId);
-
-    if (!cartItem) {
-      if (action === "increase") {
-        await shopService.create(req.user?.id, product);
-      }
-    } else {
+    if (!cartItem && action === "increase") {
+      const cartItem = await shopService.create(req.user?.id, product);
+      cartItem.quantity = 1;
+    } else if (cartItem) {
       if (action === "increase") {
         cartItem.quantity += 1;
       } else if (action === "decrease" && cartItem.quantity > 1) {
@@ -169,13 +171,28 @@ shopController.post("/update", async (req, res) => {
         await cartService.delete(cartItem);
         return res.redirect(`/products/shop`);
       }
+
       await cartItem.save();
-      res.redirect(`/products/${productId}/details`);
     }
+    res.redirect(`/products/${productId}/details`);
   } catch (err) {
     const error = errorMsg(err);
     res.render("products/details", { error });
   }
+});
+
+shopController.get("/checkout", async (req, res) => {
+  const cartId = req.cookies.cartId;
+  const cart = await cartService.getCart(cartId);
+
+  // const product = cart.map((cart) => cart.product);
+  // let quantity = cart.map((cart) => cart.quantity).join();
+
+  const total = cart
+    .reduce((sum, item) => sum + item.product.price * item.quantity, 0)
+    .toFixed(2);
+
+  res.render("products/checkout", { cart, total });
 });
 
 export default shopController;

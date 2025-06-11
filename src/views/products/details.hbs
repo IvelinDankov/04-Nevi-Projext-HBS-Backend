@@ -28,24 +28,24 @@
         <div class="instock">in Stock <span>&radic;</span></div>
         <div class="price-qty">
           <p class="price"> {{product.price}}.00 €</p>
-          <div class="quantity">
-            <span>Quantity</span>
+          {{#if cartQuantity}}
+            <div class="quantity">
+              <span>Quantity</span>
 
-            <form method="post" action="/products/update">
-              <input type="hidden" name="productId" value="{{product.id}}" />
-              <input type="hidden" name="action" value="decrease" />
-              <button type="submit">-</button>
-            </form>
+              <form method="post" action="/products/update">
+                <input type="hidden" name="productId" value="{{product.id}}" />
+                <input type="hidden" name="action" value="decrease" />
+                <button type="submit">-</button>
+              </form>
+              <p class="qty">{{cartQuantity}}</p>
+              <form method="post" action="/products/update">
+                <input type="hidden" name="productId" value="{{product.id}}" />
+                <input type="hidden" name="action" value="increase" />
+                <button type="submit">+</button>
+              </form>
 
-            <p class="qty">{{cartQuantity}}</p>
-
-            <form method="post" action="/products/update">
-              <input type="hidden" name="productId" value="{{product.id}}" />
-              <input type="hidden" name="action" value="increase" />
-              <button type="submit">+</button>
-            </form>
-
-          </div>
+            </div>
+          {{/if}}
 
           <div class="cta-buttons">
             {{#if error}} <p> {{error}} </p> {{/if}}

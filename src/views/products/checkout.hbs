@@ -1,0 +1,60 @@
+<section class="checkout-container">
+  <h2 class="checkout-heading">Checkout</h2>
+
+  <form action="/product/checkout" method="POST" class="checkout-form">
+    <div class="checkout-items">
+      {{#each cart}}
+        <div class="checkout-item">
+          <img
+            class="checkout-image"
+            src="{{this.product.imageUrl}}"
+            alt="{{this.product.title}}"
+          />
+          <div class="checkout-details">
+            <h3 class="checkout-name">{{this.product.title}}</h3>
+            <p class="checkout-color">Color: {{this.product.color}}</p>
+            <p class="checkout-qty">Quantity: {{quantity}}</p>
+            <p class="checkout-price">{{this.product.price}} € each</p>
+          </div>
+        </div>
+      {{/each}}
+    </div>
+
+    <div class="checkout-summary">
+      <p class="checkout-total">Total: <strong>{{total}} €</strong></p>
+      <div class="form-group">
+
+        <label for="Full Name">Full Name:</label>
+        <input type="text" id="Full Name" name="fullname" required />
+      </div>
+      <div class="form-group">
+
+        <label for="email">E-Mail Address</label>
+        <input type="email" id="email" />
+      </div>
+
+      <div class="form-group">
+
+        <label for="street">Street</label>
+        <input type="text" id="street" />
+      </div>
+      <div class="form-group">
+
+        <label for="street">Number</label>
+        <input type="text" id="street" />
+      </div>
+      <div class="form-group">
+
+        <label for="postal-code">Postal-code</label>
+        <input type="text" id="postal-code" />
+      </div>
+      <div class="form-group">
+
+        <label for="city">City</label>
+        <input type="text" id="city" />
+      </div>
+
+      <button type="submit" class="checkout-btn">Complete Purchase</button>
+    </div>
+  </form>
+</section>

@@ -10,7 +10,7 @@
         />
         <p class="shopping-cart-item">{{item}}</p>
         <div class="shopping-cart-content">
-          <h3 class="shopping-cart-title"> {{name}} </h3>
+          <h3 class="shopping-cart-title"> {{title}} </h3>
           <p class="shopping-cart-color">Color: Pink</p>
           <p class="shopping-cart-qty">Quantity: {{quantity}} </p>
         </div>
@@ -30,6 +30,9 @@
       </li>
     {{/each}}
     <p class="shopping-cart-summary">Total: {{total}} €</p>
-    <a class="shopping-card-purchuse-btn">Purchase</a>
+    <a {{#if user }} href="/products/checkout" {{else}} href="/users/login" {{/if}} class="shopping-card-purchuse-btn">{{#if user}}
+        Purchase
+      {{else}} Log in first {{/if}}
+    </a>
   </ul>
 </section>
